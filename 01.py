@@ -1,4 +1,4 @@
-def count_rcursive(lst):
+def count_recursive(lst):
     count = 0
     for item in lst:
         if isinstance(item, list):
