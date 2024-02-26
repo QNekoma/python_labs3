@@ -1,19 +1,14 @@
-def calc_series(j):
-    x1 = 1
-    x2 = -1/8
-    if j == 1:
-        return x1
-    elif j == 2:
-        return x2
-    else:
-        x_prev_1 = x1
-        x_prev_2 = x2
-        x = 0
-        for i in range(3, j+1):
-            x = ((i-1) * x_prev_1) / 3 + ((i-2) * x_prev_2) / 4
-            x_prev_2 = x_prev_1
-            x_prev_1 = x
-        return x
+def count(lst):
+    total = 0
+    number = list(lst)
+    while number:
+        element = number.pop()
+        if isinstance(element, list):
+            number.extend(element)
+        total += 1
+    return total
 
-print(calc_series(1))
-print(calc_series(2))
+print(count([])) # 0
+print(count([1, 2, 3])) # 3
+print(count(["x", "y", ["z"]])) # 4
+print(count([1, 2, [3, 4, [5]]])) # 7

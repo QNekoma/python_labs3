@@ -1,13 +1,15 @@
-def count_recursive(lst):
-    count = 0
-    for item in lst:
-        if isinstance(item, list):
-            count += count_recursive(item)
-        else:
-            count += 1
-    return count
+def count(lst):
+    if not lst:
+        return 0
+    total = 0
+    for element in lst:
+        if isinstance(element, list):
+            total += count(element)
+        total += 1
+    return total
 
-print(count_recursive([]))
-print(count_recursive([1, 2, 3]))
-print(count_recursive(["x", "y", ["z"]]))
-print(count_recursive([1, 2, [3, 4, [5]]]))
+print(count([]))  # 0
+print(count([1, 2, 3]))  # 3
+print(count(["x", "y", ["z"]]))  # 4
+print(count([1, 2, [3, 4, [5]]]))  # 7
+
