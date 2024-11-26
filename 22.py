@@ -1,16 +1,22 @@
-def compute_without_recursion(n):
-    if n == 1:
+def calculate(i):
+    if i == 1:
         return 1
-    elif n == 2:
-        return -1/8
-    else:
-        x_1, x_2 = 1, -1/8
-        for i in range(3, n+1):
-            x_i = ((i-1) * x_2) / 3 + ((i-2) * x_1) / 4
-            x_1, x_2 = x_2, x_i
-        return x_1, x_2
+    elif i == 2:
+        return -1 / 8
 
-# Пример использования для n = 3
-result_x1, result_x2 = compute_without_recursion(3)
-print("x_1:", result_x1)
-print("x_2:", result_x2)
+    # список для хранения результатов
+    results = [0] * (i + 1)
+    results[1] = 1
+    results[2] = -1 / 8
+
+    for j in range(3, i + 1):
+        results[j] = ((j - 1) * results[j - 1]) / 3 + ((j - 2) * results[j - 2]) / 4
+
+    return results[i]
+
+try:
+    user_input = int(input("Введите целое число для расчёта (i): "))
+    result = calculate(user_input)
+    print(f"Результат для i = {user_input}: {result}")
+except ValueError:
+    print("Пожалуйста, введите целое число.")
